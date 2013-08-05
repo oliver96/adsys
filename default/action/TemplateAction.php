@@ -32,8 +32,22 @@ class TemplateAction extends CommonAction {
                 'order' => '`id` DESC'
             ), $page, $pageSize);
             
-            while($row = $template->nextRow()) {
+			// 允许的素材类型
+			$matTypeMap = array('text' => '文本', 'image' => '图片', 'video' => '视频');
+            while($row = $tplList->nextRow()) {
                 $rowAry     = $row->toArray();
+				$matTypes	= explode(',', $rowAry['mat_types']);
+				
+				$rowAry['mat_type_text'] = '';
+				if(!empty($matTypes)) {
+					$texts = array();
+
+					foreach($matTypes as $matType) {
+						$texts[] = isset($matTypeMap[$matType]) ? $matTypeMap[$matType] : $matType;
+					}
+					$rowAry['mat_type_text'] = implode(',', $texts);
+					unset($rowAry['mat_types']);
+				}
                 $rows[] = $rowAry;
             }
         }
@@ -69,7 +83,7 @@ class TemplateAction extends CommonAction {
         
         $existRecords = false;
         if($id > 0) {
-            $existRecords = $template->getCount(array('id' => 'not {$id}', 'name' => $name));
+            $existRecords = $template->getCount(array('id' => "not '{$id}'", 'name' => $name));
         }
         else {
             $existRecords = $template->getCount(array('name' => $name));

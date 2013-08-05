@@ -1,4 +1,9 @@
 <?php include($VIEW_PATH . "/_public/header.html"); ?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">模板宏自定义</a> <span class="divider">/</span></li>
+    <li class="active">列表</li>
+</ul>
 <div class="well">
     <a href="<?= Core::url(array('m' => 'micro', 'a' => 'edit')); ?>" class="btn btn-primary btn-small">
         <i class="icon-plus icon-white"></i>添加

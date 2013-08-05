@@ -12,10 +12,8 @@ define([
         el: $("body")
         , template : _.template($('#adtpl_form_template').html())
         , events : {
-            // 禁用“回车键”，防止意外提交表单
-            'keypress #adtpl_form' : 'disableEnterKeyEvent'
             // 保存“广告主”事件
-            , 'click #save_adtpl_btn' : 'saveAdtplEvent'
+            'click #save_adtpl_btn' : 'saveAdtplEvent'
         }
         , initialize : function() {
             this.listenTo(adtpl, 'change', this.render);
@@ -35,12 +33,6 @@ define([
                 , {'label': '视频', 'value': 'video'}
             ];
             this.$('#adtpl_form').html(this.template(adtplInfo));
-        }
-        , disableEnterKeyEvent : function(e) {
-            if(e.which == 13) {
-                return false;
-            }
-            return true;
         }
         , saveAdtplEvent : function(e) {
             // 获取表单所有数据
