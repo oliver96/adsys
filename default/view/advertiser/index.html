@@ -1,0 +1,47 @@
+<?php include($VIEW_PATH . "/_public/header.html"); ?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">广告主</a> <span class="divider">/</span></li>
+    <li class="active">列表</li>
+</ul>
+<div class="well">
+    <a href="<?= Core::url(array('m' => 'advertiser', 'a' => 'edit')); ?>" class="btn btn-primary btn-small">
+        <i class="icon-plus icon-white"></i>添加
+    </a>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="5">
+                <button class="btn btn-mini">修改</button>
+                <button class="btn btn-mini">删除</button>
+                <button class="btn btn-mini">暂停</button>
+                <button class="btn btn-mini">恢复</button>
+            </th>
+        <tr>
+        <tr>
+            <th width="5%"><input type="checkbox" /></th>
+            <th width="20%">广告主名称</th>
+            <th width="10%">所属行业</th>
+            <th width="5%">订单数</th>
+            <th width="10%">联系人</th>
+            <th width="15%">邮件地址</th>
+            <th width="20%">联系方式</th>
+            <th width="15%">创建时间</th>
+        </tr>
+    </thead>
+    <tbody id="adv_list">
+    </tbody>
+</table>
+<div class="pagination pull-right"></div>
+<script id="adv_item_template" type="text/template">
+    <td width="5%"><input type="checkbox" name="row_checked" value="<%=id%>" /></td>
+    <td><a href="javascript:void(0);" class="edit-link"><%=name%></a></td>
+    <td><%=indus%></td>
+    <td>2</td>
+    <td><%=contact%></td>
+    <td><%=email%></td>
+    <td><%=detail%></td>
+    <td><%=created%></td>
+</script>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

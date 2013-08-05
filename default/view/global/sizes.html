@@ -1,0 +1,61 @@
+<?php include($VIEW_PATH . "/_public/header.html"); ?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">尺寸</a> <span class="divider">/</span></li>
+    <li class="active">列表</li>
+</ul>
+<div class="well">
+    <a href="<?= Core::url(array('m' => 'global', 'a' => 'editSize')); ?>" class="btn btn-primary btn-small">
+        <i class="icon-plus icon-white"></i>添加
+    </a>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <button class="btn btn-mini">修改</button>
+                <button class="btn btn-mini">删除</button>
+                <button class="btn btn-mini">暂停</button>
+                <button class="btn btn-mini">恢复</button>
+            </th>
+        <tr>
+        <tr>
+            <th width="5%"><input type="checkbox" /></th>
+            <th width="20%">尺寸</th>
+            <th width="10%">宽度</th>
+            <th width="10%">高度</th>
+            <th width="40%">说明</th>
+            <th width="15%">创建时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td width="5%"><input type="checkbox" /></td>
+            <td>250x250</td>
+            <td>250</td>
+            <td>250</td>
+            <td></td>
+            <td>2013-06-27 21:45:34</td>
+        </tr>
+        <tr>
+            <td width="5%"><input type="checkbox" /></td>
+            <td>250x250</td>
+            <td>250</td>
+            <td>250</td>
+            <td></td>
+            <td>2013-06-27 21:45:34</td>
+        </tr>
+    </tbody>
+</table>
+<div class="pagination pull-right">
+    <ul>
+        <li><a href="#">上一页</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">下一页</a></li>
+    </ul>
+</div>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

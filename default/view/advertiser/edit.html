@@ -1,0 +1,72 @@
+<?php include($VIEW_PATH . "/_public/header.html");?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">广告主</a> <span class="divider">/</span></li>
+    <li class="active"><?=(isset($req_id) && $req_id) > 0 ? '编辑' : '添加'?></li>
+</ul>
+<form id="advertiser_form" class="form-horizontal"></form>
+<script id="adv_form_template" type="text/template">
+    <div class="control-group">
+        <label class="control-label" for="adv_name">名称</label>
+        <div class="controls">
+            <input type="text" id="adv_name" name="name" value="<%=name%>" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="industry">所属行业</label>
+        <div class="controls">
+            <select id="industry" name="indus_id">
+                <option value="0">选择行业</option>
+                <% _.each(industries, function(indus, index) { %>
+                <% if(indus.id == indus_id) { %>
+                <option value="<%=indus.id%>" selected="selected"><%=indus.name%></option>
+                <% } else { %>
+                <option value="<%=indus.id%>"><%=indus.name%></option>
+                <% } %>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="credit">信誉等级</label>
+        <div class="controls">
+            <select id="credit" name="credit">
+                <option value="0">选择信誉等级</option>
+                <% _.each(credits, function(creditRow, index) { %>
+                <% if(creditRow.value == credit) { %>
+                <option value="<%=creditRow.value%>" selected="selected"><%=creditRow.label%></option>
+                <% } else { %>
+                <option value="<%=creditRow.value%>"><%=creditRow.label%></option>
+                <% } %>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="contact">联系人</label>
+        <div class="controls">
+            <input type="text" id="contact" name="contact" value="<%=contact%>" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="email">邮件地址</label>
+        <div class="controls">
+            <input type="text" id="email" name="email" value="<%=email%>" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="detail">联系方式</label>
+        <div class="controls">
+            <textarea id="detail" name="detail" rows="3"><%=detail%></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <a href="<?= Core::url(array('m' => 'advertiser', 'a' => 'index')); ?>" class="btn btn-small">
+            <i class="icon-arrow-left"></i>返回列表
+        </a>
+        <button id="save_advertiser_btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-hdd icon-white"></i>保存数据
+        </button>
+    </div>
+</script>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

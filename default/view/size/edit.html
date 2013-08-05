@@ -1,0 +1,48 @@
+<?php include($VIEW_PATH . "/_public/header.html"); ?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">尺寸</a> <span class="divider">/</span></li>
+     <li class="active"><?=(isset($req_id) && $req_id) > 0 ? '编辑' : '添加'?></li>
+</ul>
+<form id="size_form" class="form-horizontal"></form>
+<script id="size_form_template" type="text/template">
+    <div class="control-group">
+        <label class="control-label" for="size_name">名称</label>
+        <div class="controls">
+            <input type="text" id="size_name" name="name" value="<%=name%>" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="width">宽度</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="text" id="width" name="width" class="span1" value="<%=width%>" />
+                <span class="add-on">px</span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="height">高度</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="text" id="height" name="height" class="span1" value="<%=height%>" />
+                <span class="add-on">px</span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="memo">说明</label>
+        <div class="controls">
+            <textarea id="memo" name="memo" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <a href="<?= Core::url(array('m' => 'size', 'a' => 'index')); ?>" class="btn btn-small">
+            <i class="icon-arrow-left"></i>返回列表
+        </a>
+        <button id="save_size_btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-hdd icon-white"></i>保存数据
+        </button>
+    </div>
+</script>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

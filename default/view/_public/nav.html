@@ -1,0 +1,25 @@
+<ul class="nav nav-list">
+	<?php
+	foreach($navs as $nav) {
+	?>
+	<li class="nav-header"><?=$nav['header']?></li>
+	<?php
+		if(isset($nav['childs']) && !empty($nav['childs'])) {
+			foreach($nav['childs'] as $childNav) {
+			?>
+			<li>
+				<a href="<?=$childNav['url']?>">
+					<?php if (isset($childNav['icon'])) { ?>
+					<i class="<?=$childNav['icon']?>"></i>
+					<?php } ?>
+					<?=$childNav['text']?>
+				</a>
+			</li>
+			<?php
+			}
+		}
+	}
+	?>
+    <li class="divider"></li>
+    <li><a href="#">更多...</a></li>
+</ul>

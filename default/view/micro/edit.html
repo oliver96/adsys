@@ -1,0 +1,66 @@
+<?php include($VIEW_PATH . "/_public/header.html");?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">模板宏自定义</a> <span class="divider">/</span></li>
+    <li class="active"><?=(isset($req_id) && $req_id) > 0 ? '编辑' : '添加'?></li>
+</ul>
+<form id="micro_form" class="form-horizontal"></form>
+<script id="micro_form_template" type="text/template">
+    
+    <div class="control-group">
+        <label class="control-label" for="code">宏变量</label>
+        <div class="controls">
+            <input type="text" id="code" name="code" value="<%=code%>" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="micro_name">名称</label>
+        <div class="controls">
+            <input type="text" id="micro_name" name="name" value="<%=name%>" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="value_type">显示类型</label>
+        <div class="controls">
+            <select id="value_type" name="value_type">
+                <option>输入框</option>
+                <option>多项单选</option>
+                <option>多项多选</option>
+                <option>多项下拉</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="value">值</label>
+        <div class="controls">
+            <input type="text" id="value" name="value" value="<%=values%>" />
+            <span class="help-inline">格式为：[['name', 'value'], ['name', 'value']...]</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="validate">值类型</label>
+        <div class="controls">
+            <select id="validate" name="validate">
+                <option>URL</option>
+                <option>邮件地址</option>
+                <option>数字</option>
+                <option>字母与数字</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="memo">字段备注</label>
+        <div class="controls">
+            <textarea id="memo" name="memo"><%=memo%></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <a href="<?= Core::url(array('m' => 'micro', 'a' => 'index')); ?>" class="btn btn-small">
+            <i class="icon-arrow-left"></i>返回列表
+        </a>
+        <button id="save_micro_btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-hdd icon-white"></i>保存宏变量
+        </button>
+    </div>
+</script>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

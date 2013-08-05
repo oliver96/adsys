@@ -1,0 +1,57 @@
+body, input, button, select, textarea {
+	font-family: 'Microsoft YaHei','Helvetica Neue',arial,sans-serif,'Hiragino Sans GB',Tahoma;
+	font-size: 12px;
+}
+fieldset legend {
+    font-size: 12px;
+}
+#sidebar {
+    z-index: 2;
+    width: 136px;
+    position: fixed;
+    left: 20px;
+    top: 15px;
+    box-shadow: 0 0 7px 0 rgba(50,50,50,.45);
+}
+#sidebar > header
+, #sidebar > div
+, #sidebar > nav {
+    background-color: #f5f5f5;
+    
+}
+#sidebar > header {
+    border-radius: 2px 2px 0 0;
+}
+#sidebar > header > h1 {
+    min-height: 40px;
+    margin: 0;
+    padding: 3px 3px 2px;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #08c;
+    word-wrap: break-word;
+    font-weight: 400;
+}
+#sidebar > header > h1 > span {
+    display: inline-block;
+    padding: 12px 8px;
+    text-overflow: ellipsis;
+    max-width: 112px;
+}
+
+#wrapper {
+	margin-top: 15px;
+    margin-left: 155px;
+}
+.pagination {
+	margin: 0;
+}
+
+/* custom */
+.controls table {
+    margin-left: 0;
+}
+.controls fieldset {
+    margin-left: 0;
+}

@@ -1,0 +1,64 @@
+<?php include($VIEW_PATH . "/_public/header.html"); ?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">订单项</a> <span class="divider">/</span></li>
+    <li class="active">添加</li>
+</ul>
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="slot_name">名称</label>
+        <div class="controls">
+            <input type="text" id="slot_name" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="start_time">开始时间</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="text" id="start_time" class="span2" />
+                <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="end_time">结束时间</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="text" id="end_time" class="span2" />
+                <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="method">投放目标</label>
+        <div class="controls">
+            <div class="input-prepend input-append">
+                <input type="text" id="count" class="span2" />
+                <select class="span1">
+                    <option>CPD</option>
+                    <option>CPM</option>
+                    <option>CPC</option>
+                    <option>CPA</option>
+                    <option>CPS</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="method">优先级</label>
+        <div class="controls">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="method">权重</label>
+        <div class="controls">
+        </div>
+    </div>
+    <div class="form-actions">
+        <a href="<?= Core::url(array('m' => 'order', 'a' => 'orderItems')); ?>" class="btn btn-small">
+            <i class="icon-arrow-left"></i>返回
+        </a>
+        <button type="submit" class="btn btn-primary btn-small"><i class="icon-hdd icon-white"></i>保存</button>
+    </div>
+</form>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

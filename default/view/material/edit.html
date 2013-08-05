@@ -1,0 +1,61 @@
+<?php include($VIEW_PATH . "/_public/header.html"); ?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">素材</a> <span class="divider">/</span></li>
+    <li class="active">添加</li>
+</ul>
+<form id="material_form" class="form-horizontal"></form>
+<script id="mat_form_template" type="text/template">
+    <div class="control-group">
+        <label class="control-label" for="mat_name">名称</label>
+        <div class="controls">
+            <input type="text" id="mat_name" name="name" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="advertiser">所属广告主</label>
+        <div class="controls">
+            <select id="advertiser" name="adv_id">
+                <option value="0">选择广告主</option>
+                <% _.each(advertisers, function(adv, index) { %>
+                <% if(adv.id == adv_id) { %>
+                <option value="<%=adv.id%>" selected="selected"><%=adv.name%></option>
+                <% } else { %>
+                <option value="<%=adv.id%>"><%=adv.name%></option>
+                <% } %>
+                <% }) %>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="type">素材类型</label>
+        <div class="controls">
+            <select id="type" name="type">
+                <option value="image">图片</option>
+                <option value="video">视频</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="url">素材地址</label>
+        <div class="controls">
+            <div class="input-prepend input-append">
+                <span class="add-on">http://</span>
+                <input type="text" id="url" name="url" class="span3" />
+                <button class="btn" type="button">上传素材</button>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">&nbsp;</label>
+    </div>
+    <div class="form-actions">
+        <a href="<?= Core::url(array('m' => 'material', 'a' => 'index')); ?>" class="btn btn-small">
+            <i class="icon-arrow-left"></i>返回列表
+        </a>
+        <button id="save_material_btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-hdd icon-white"></i>保存数据
+        </button>
+    </div>
+</script>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

@@ -1,0 +1,54 @@
+<?php include($VIEW_PATH . "/_public/header.html"); ?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">广告位</a> <span class="divider">/</span></li>
+    <li class="active">添加</li>
+</ul>
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="slot_name">名称</label>
+        <div class="controls">
+            <input type="text" id="slot_name" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="size_id">尺寸</label>
+        <div class="controls">
+            <select id="size_id">
+                <optgroup label="基本尺寸">
+                    <option value="1">250x250</option>
+                    <option value="2">120x90</option>
+                    <option value="3">300x250</option>
+                    <option value="4">468x60</option>
+                </optgroup>
+                <optgroup label="自定义尺寸">
+                    <option value="image">无</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="size_id">显示方式</label>
+        <div class="controls">
+            <label class="radio inline">
+                <input type="radio" id="inlineCheckbox1" value="option1"> 单个广告
+            </label>
+            <label class="radio inline">
+                <input type="radio" id="inlineCheckbox2" value="option2"> 多个广告
+            </label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="size_id">广告位修饰</label>
+        <div class="controls">
+            <textarea rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <a href="<?= Core::url(array('m' => 'publisher', 'a' => 'slots')); ?>" class="btn btn-small">
+            <i class="icon-arrow-left"></i>返回
+        </a>
+        <button type="submit" class="btn btn-primary btn-small"><i class="icon-hdd icon-white"></i>保存</button>
+    </div>
+</form>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

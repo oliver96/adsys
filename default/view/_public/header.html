@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ad Edge</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="<?=$WEB_ROOT?>/pub/css/bootstrap.css" />
+        <link rel="stylesheet" href="<?=$WEB_ROOT?>/pub/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" href="<?=$WEB_ROOT?>/pub/css/global.css" />
+        <script type="text/javascript">
+            var App =  App || {};
+            App.root = '<?=$WEB_ROOT?>';
+            App.module = '<?=$MODULE_NAME?>';
+            App.action = '<?=$ACTION_NAME?>';
+            eval('App.params = <?=$params?>');
+        </script>
+        <script type="text/javascript" data-main="<?=$WEB_ROOT?>/pub/js/main" src="<?=$WEB_ROOT?>/pub/js/require.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <section id="sidebar">
+                <header>
+                    <h1>
+                        <span>Ad Edge</span>
+                    </h1>
+                </header>
+                <nav>
+                    <?php include($VIEW_PATH . "/_public/nav.html"); ?>
+                </nav>
+            </section>
+            <div id="wrapper">
+                <div class="zcx-container">

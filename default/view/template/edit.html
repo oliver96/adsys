@@ -1,0 +1,40 @@
+<?php include($VIEW_PATH . "/_public/header.html");?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">创意模板</a> <span class="divider">/</span></li>
+    <li class="active"><?=(isset($req_id) && $req_id) > 0 ? '编辑' : '添加'?></li>
+</ul>
+<form id="adtpl_form" class="form-horizontal"></form>
+<script id="adtpl_form_template" type="text/template">
+    <div class="control-group">
+        <label class="control-label" for="adtpl_name">名称</label>
+        <div class="controls">
+            <input type="text" id="adtpl_name" name="name" value="<%=name%>" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">允许的素材类型</label>
+        <div class="controls">
+            <% _.each(matTypes, function(matType, index) { %>
+            <label class="checkbox inline">
+                <input type="checkbox" id="mat_type_<%=index%>" name="mat_types" value="<%=matType.value%>" /><%=matType.label%>
+            </label>
+            <% });%>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="code">代码(JS)</label>
+        <div class="controls">
+            <textarea id="code" name="code" rows="10" class="span6" style="font-family:'Monaco';font-size:14px;"></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <a href="<?= Core::url(array('m' => 'template', 'a' => 'index')); ?>" class="btn btn-small">
+            <i class="icon-arrow-left"></i>返回列表
+        </a>
+        <button id="save_adtpl_btn" type="button" class="btn btn-primary btn-small">
+            <i class="icon-hdd icon-white"></i>保存创意模板
+        </button>
+    </div>
+</script>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

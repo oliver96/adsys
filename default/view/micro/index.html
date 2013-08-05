@@ -1,0 +1,36 @@
+<?php include($VIEW_PATH . "/_public/header.html"); ?>
+<div class="well">
+    <a href="<?= Core::url(array('m' => 'micro', 'a' => 'edit')); ?>" class="btn btn-primary btn-small">
+        <i class="icon-plus icon-white"></i>添加
+    </a>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="5">
+                <button class="btn btn-mini">修改</button>
+                <button class="btn btn-mini">删除</button>
+                <button class="btn btn-mini">暂停</button>
+                <button class="btn btn-mini">恢复</button>
+            </th>
+        <tr>
+        <tr>
+            <th width="5%"><input type="checkbox" /></th>
+            <th width="20%">宏变量</th>
+            <th width="15%">类型</th>
+            <th width="25%">值</td>
+            <th width="30%">说明</th>
+        </tr>
+    </thead>
+    <tbody id="micro_list">
+    </tbody>
+</table>
+<div class="pagination pull-right"></div>
+<script id="micro_item_template" type="text/template">
+    <input type="checkbox" name="row_checked" value="<%=id%>" />
+    <td><a href="javascript:void(0);" class="edit-link"><%=name%>（<%=code%>）</a></td>
+    <td><%=value_type%></td>
+    <td><%=values%></td>
+    <td><%=memo%></td>
+</script>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>

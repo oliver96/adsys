@@ -1,0 +1,109 @@
+<?php include($VIEW_PATH . "/_public/header.html"); ?>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">创意</a> <span class="divider">/</span></li>
+    <li class="active">添加</li>
+</ul>
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="banner_name">名称</label>
+        <div class="controls">
+            <input type="text" id="material_name" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="adv_id">所属广告主</label>
+        <div class="controls">
+            <select id="type">
+                <option value="1">欧莱雅</option>
+                <option value="2">宝马</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="tpl_id">创意模板</label>
+        <div class="controls">
+            <select id="tpl_id">
+                <optgroup label="基本模板">
+                    <option value="image">文字链</option>
+                    <option value="image">普通</option>
+                    <option value="video">浮层</option>
+                    <option value="video">对联</option>
+                    <option value="video">视频</option>
+                </optgroup>
+                <optgroup label="自定义模板">
+                    <option value="image">无</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="tpl_id">尺寸</label>
+        <div class="controls">
+            <select id="tpl_id">
+                <optgroup label="基本尺寸">
+                    <option value="1">250x250</option>
+                    <option value="2">120x90</option>
+                    <option value="3">300x250</option>
+                    <option value="4">468x60</option>
+                </optgroup>
+                <optgroup label="自定义尺寸">
+                    <option value="image">无</option>
+                </optgroup>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="tpl_id">是否优化播放</label>
+        <div class="controls">
+            <label class="radio inline">
+                <input type="radio" id="inlineCheckbox1" value="option1" checked> 否
+            </label>
+            <label class="radio inline">
+                <input type="radio" id="inlineCheckbox2" value="option2"> 是
+            </label>
+        </div>
+    </div>
+    <fieldset>
+        <legend>素材设置</legend>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>素材名称</th>
+                        <th>类型</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>URL</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>统一冰红茶－夏日装</td>
+                        <td>图片</td>
+                        <td>2013-02-06</td>
+                        <td>2013-03-06</td>
+                        <td>http://www.xxx.com/file/dedsdwef.jpg</td>
+                        <td>预览 排期</td>
+                    </tr>
+                    <tr>
+                        <td>统一冰红茶－夏日装</td>
+                        <td>图片</td>
+                        <td>2013-02-06</td>
+                        <td>2013-03-06</td>
+                        <td>http://www.xxx.com/file/dedsdwef.jpg</td>
+                        <td>预览 排期</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <div class="form-actions">
+        <a href="<?= Core::url(array('m' => 'resource', 'a' => 'materials')); ?>" class="btn btn-small">
+            <i class="icon-arrow-left"></i>返回
+        </a>
+        <button type="submit" class="btn btn-primary btn-small"><i class="icon-hdd icon-white"></i>保存</button>
+    </div>
+</form>
+<?php include($VIEW_PATH . "/_public/footer.html") ?>
