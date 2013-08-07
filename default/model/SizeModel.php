@@ -5,7 +5,7 @@ class SizeModel extends Model {
     // 主键
     protected $prikey   = 'id';
     // 字段
-    protected $fields   = array('id', 'name', 'width', 'height', 'memo', 'created');
+    protected $fields   = array('id', 'name', 'type', 'width', 'height', 'memo', 'created');
     /**
      * 获取表名称
      * 

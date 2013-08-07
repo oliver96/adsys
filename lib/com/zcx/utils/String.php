@@ -14,7 +14,7 @@ class String {
                 if (is_object($val) || is_array($val)) {
                     $arr[$key] = String::objToArray($val);
                 } else {
-                    $arr[$key] = $val;
+                    $arr[$key] = stripslashes($val);
                 }
             }
         }
@@ -26,7 +26,7 @@ class String {
             return array();
         if (!is_string($json))
             return $json;
-        $jsonObj = json_decode(stripslashes($json));
+        $jsonObj = json_decode($json);
         return String::objToArray($jsonObj);
     }
 

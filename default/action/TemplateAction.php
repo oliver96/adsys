@@ -2,14 +2,6 @@
 import("action.CommonAction");
 import("model.TemplateModel");
 class TemplateAction extends CommonAction {
-    public function index() {
-        $this->output();
-    }
-    
-    public function edit() {
-        $this->output();
-    }
-    
     public function rows() {
         $totalPage  = 0;
         $page       = $this->request->getParameter('page');
@@ -32,22 +24,22 @@ class TemplateAction extends CommonAction {
                 'order' => '`id` DESC'
             ), $page, $pageSize);
             
-			// 允许的素材类型
-			$matTypeMap = array('text' => '文本', 'image' => '图片', 'video' => '视频');
+            // 允许的素材类型
+            $matTypeMap = array('text' => '文本', 'image' => '图片', 'video' => '视频');
             while($row = $tplList->nextRow()) {
                 $rowAry     = $row->toArray();
-				$matTypes	= explode(',', $rowAry['mat_types']);
-				
-				$rowAry['mat_type_text'] = '';
-				if(!empty($matTypes)) {
-					$texts = array();
+                $matTypes	= explode(',', $rowAry['mat_types']);
 
-					foreach($matTypes as $matType) {
-						$texts[] = isset($matTypeMap[$matType]) ? $matTypeMap[$matType] : $matType;
-					}
-					$rowAry['mat_type_text'] = implode(',', $texts);
-					unset($rowAry['mat_types']);
-				}
+                $rowAry['mat_type_text'] = '';
+                if(!empty($matTypes)) {
+                    $texts = array();
+
+                    foreach($matTypes as $matType) {
+                        $texts[] = isset($matTypeMap[$matType]) ? $matTypeMap[$matType] : $matType;
+                    }
+                    $rowAry['mat_type_text'] = implode(',', $texts);
+                    unset($rowAry['mat_types']);
+                }
                 $rows[] = $rowAry;
             }
         }
@@ -97,7 +89,7 @@ class TemplateAction extends CommonAction {
             ));
         }
         else {
-            if(is_array($input['mat_types'])) {
+            if(isset($input['mat_types']) && is_array($input['mat_types'])) {
                 $input['mat_types'] = implode(',', $input['mat_types']);
             }
             if($id > 0) {

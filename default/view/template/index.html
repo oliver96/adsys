@@ -21,9 +21,10 @@
         <tr>
         <tr>
             <th width="5%"><input type="checkbox" /></th>
-            <th width="25%">模板名称</th>
-            <th width="20%">允许类型</th>
-            <th width="50%">预览效果</th>
+            <th width="20%">模板名称</th>
+            <th width="15%">允许类型</th>
+            <th width="20%">预览效果</th>
+            <th width="40%">扩展库地址</th>
         </tr>
     </thead>
     <tbody id="adtpl_list">
@@ -33,7 +34,8 @@
 <script id="adtpl_item_template" type="text/template">
     <td width="5%"><input type="checkbox" name="row_checked" value="<%=id%>" /></td>
     <td><a href="javascript:void(0);" class="edit-link"><%=name%></a></td>
-	<td><%=mat_type_text%></td>
-	<td><%=mat_type_text%></td>
+    <td><%=mat_type_text%></td>
+    <td>无</td>
+    <td><%=extjs%></td>
 </script>
 <?php include($VIEW_PATH . "/_public/footer.html") ?>

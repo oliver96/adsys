@@ -17,11 +17,11 @@
         <div class="controls">
             <% _.each(matTypes, function(matType, index) { %>
             <label class="checkbox inline">
-				<% if (mat_types.indexOf(matType.value) != -1) { %>
+                <% if (mat_types.indexOf(matType.value) != -1) { %>
                 <input type="checkbox" id="mat_type_<%=index%>" name="mat_types" value="<%=matType.value%>" checked="checked" /><%=matType.label%>
-				<% } else { %>
-				<input type="checkbox" id="mat_type_<%=index%>" name="mat_types" value="<%=matType.value%>" /><%=matType.label%>
-				<% } %>
+                <% } else { %>
+                <input type="checkbox" id="mat_type_<%=index%>" name="mat_types" value="<%=matType.value%>" /><%=matType.label%>
+                <% } %>
             </label>
             <% });%>
         </div>
@@ -30,6 +30,15 @@
         <label class="control-label" for="code">代码(JS)</label>
         <div class="controls">
             <textarea id="code" name="code" rows="10" class="span6" style="font-family:'Monaco';font-size:14px;"><%=code%></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="extjs">扩展库</label>
+        <div class="controls">
+            <div class="input-prepend">
+                <span class="add-on">http://</span>
+                <input type="text" id="extjs" name="extjs" class="span4" value="<%=extjs%>" />
+            </div>
         </div>
     </div>
     <div class="form-actions">

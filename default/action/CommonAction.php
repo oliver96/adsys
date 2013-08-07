@@ -20,14 +20,9 @@ class CommonAction extends Action {
                         'url' => Core::url(array('m' => 'material', 'a' => 'index'))
                     ),
                     array(
-                        'text' => '创意',
-                        'icon' => 'icon-picture',
-                        'url' => Core::url(array('m' => 'resource', 'a' => 'banners'))
-                    ),
-                    array(
                         'text' => '广告',
-                        'icon' => 'icon-bullhorn',
-                        'url' => Core::url(array('m' => 'resource', 'a' => 'advertisings'))
+                        'icon' => 'icon-picture',
+                        'url' => Core::url(array('m' => 'advertising', 'a' => 'index'))
                     )
                 )
             ),
@@ -115,6 +110,16 @@ class CommonAction extends Action {
         $this->assign('params', String::jsonEncode($params));
         
         file_put_contents("/tmp/adsys.log", $_SERVER['PHP_SELF'] . "\r\n", FILE_APPEND);
+    }
+    
+    // 每个模块的列表页， 可以根据不同业务逻辑进行重载方法
+    public function index() {
+        $this->output();
+    }
+    
+    // 每个模块的编辑页， 可以根据不同业务逻辑进行重载方法
+    public function edit() {
+        $this->output();
     }
     
     // 公共“添加”，“删除”，“编辑”的接口代理

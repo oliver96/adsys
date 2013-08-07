@@ -80,11 +80,12 @@ class SizeAction extends CommonAction {
             $this->outputJson(array(
                 'status' => false, 
                 'errors' => array(
-                    'adv_name' => '存在相同尺寸记录'
+                    'size_name' => '存在相同尺寸记录'
                 )
             ));
         }
         else {
+            $input['type'] = 'custom';
             if($id > 0) {
                 $size->update($input, array('id' => $id));
             }

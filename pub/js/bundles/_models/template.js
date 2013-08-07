@@ -11,6 +11,7 @@ AdTemplate = (function ( Backbone, _, $ ) {
             , 'name' : ''
             , 'mat_types' : []
             , 'code' : ''
+            , 'extjs' : ''
             , 'memo' : ''
         }
         , validate : function(data) {

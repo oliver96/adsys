@@ -5,7 +5,7 @@ class TemplateModel extends Model {
     // 主键
     protected $prikey   = 'id';
     // 字段
-    protected $fields   = array('id', 'name', 'mat_types', 'code');
+    protected $fields   = array('id', 'name', 'mat_types', 'code', 'extjs');
     /**
      * 获取表名称
      * 
