@@ -28,36 +28,15 @@
 			<th width="15%">创建时间</th>
 		</tr>
 	</thead>
-	<tbody>
-		<tr>
-			<td width="5%"><input type="checkbox" /></td>
-			<td>哇哈哈-凉爽夏日</td>
-			<td>
-				图片(JPG)
-			</td>
-			<td>http://localhost/photo/2/23422.jpg</td>
-			<td>20K</td>
-			<td>2013-06-27 21:28:32</td>
-		</tr>
-		<tr>
-			<td width="5%"><input type="checkbox" /></td>
-			<td>哇哈哈-凉爽夏日</td>
-			<td>视频(SWF)</td>
-			<td>http://localhost/photo/2/23422.jpg</td>
-			<td>20K</td>
-			<td>2013-06-27 21:28:32</td>
-		</tr>
-	</tbody>
+	<tbody id="material_list"></tbody>
 </table>
-<div class="pagination pull-right">
-	<ul>
-		<li><a href="#">上一页</a></li>
-		<li><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">下一页</a></li>
-	</ul>
-</div>
+<div class="pagination pull-right"></div>
+<script id="mat_item_template" type="text/template">
+    <td width="5%"><input type="checkbox" /></td>
+    <td><%=name%></td>
+    <td><%=type%></td>
+    <td>http://localhost/photo/2/23422.jpg</td>
+    <td>20K</td>
+    <td>2013-06-27 21:28:32</td>
+</script>
 <?php include($VIEW_PATH . "/_public/footer.html") ?>

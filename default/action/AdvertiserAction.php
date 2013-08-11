@@ -78,7 +78,7 @@ class AdvertiserAction extends CommonAction {
         
         $existRecords = false;
         if($id > 0) {
-            $existRecords = $advertiser->getCount(array('id' => 'not {$id}', 'name' => $name));
+            $existRecords = $advertiser->getCount(array('id' => "not {$id}", 'name' => $name));
         }
         else {
             $existRecords = $advertiser->getCount(array('name' => $name));
