@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 05, 2013 at 06:35 PM
+-- Generation Time: Aug 12, 2013 at 04:02 PM
 -- Server version: 5.5.32-0ubuntu0.12.04.1
 -- PHP Version: 5.3.10-1ubuntu3.7
 
@@ -45,6 +45,23 @@ CREATE TABLE IF NOT EXISTS `advertisers` (
 
 INSERT INTO `advertisers` (`id`, `name`, `indus_id`, `credit`, `contact`, `email`, `detail`, `created`) VALUES
 (1, '宝马汽车有限公司', 1, 5, '', '', '', '2013-08-01 02:44:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advertisings`
+--
+
+DROP TABLE IF EXISTS `advertisings`;
+CREATE TABLE IF NOT EXISTS `advertisings` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL COMMENT '广告名称',
+  `adv_id` int(11) NOT NULL,
+  `tpl_id` int(11) NOT NULL,
+  `size_id` int(11) NOT NULL,
+  `optimize` int(11) NOT NULL COMMENT '是否优化素材显示',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -127,6 +144,7 @@ DROP TABLE IF EXISTS `sizes`;
 CREATE TABLE IF NOT EXISTS `sizes` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '尺寸编号',
   `name` varchar(50) NOT NULL COMMENT '尺寸名称',
+  `type` enum('system','custom') NOT NULL COMMENT '尺寸类型：系统基本尺寸与用户自定义尺寸',
   `width` int(11) NOT NULL COMMENT '宽度',
   `height` int(11) NOT NULL COMMENT '高度',
   `memo` tinytext NOT NULL COMMENT '说明',
@@ -138,9 +156,9 @@ CREATE TABLE IF NOT EXISTS `sizes` (
 -- Dumping data for table `sizes`
 --
 
-INSERT INTO `sizes` (`id`, `name`, `width`, `height`, `memo`, `created`) VALUES
-(1, '250x250', 250, 250, '', '2013-08-01 04:07:26'),
-(2, '468x60', 468, 60, '', '2013-08-01 04:19:53');
+INSERT INTO `sizes` (`id`, `name`, `type`, `width`, `height`, `memo`, `created`) VALUES
+(1, '250x250', 'system', 250, 250, '', '2013-08-01 04:07:26'),
+(2, '468x60', 'system', 468, 60, '', '2013-08-01 04:19:53');
 
 -- --------------------------------------------------------
 
@@ -151,18 +169,21 @@ INSERT INTO `sizes` (`id`, `name`, `width`, `height`, `memo`, `created`) VALUES
 DROP TABLE IF EXISTS `templates`;
 CREATE TABLE IF NOT EXISTS `templates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL COMMENT '创意模板名称',
   `mat_types` varchar(50) NOT NULL COMMENT '允许的素材类型',
-  `code` tinytext NOT NULL,
+  `code` tinytext NOT NULL COMMENT '创意模板代码',
+  `extjs` varchar(200) NOT NULL COMMENT '第三方js扩展库',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `templates`
 --
 
-INSERT INTO `templates` (`id`, `name`, `mat_types`, `code`) VALUES
-(1, 'fsadfsas', 'image', 'sdfsf');
+INSERT INTO `templates` (`id`, `name`, `mat_types`, `code`, `extjs`) VALUES
+(1, '文字链', 'text,image', 'var linkTitle = "[LINK_TITLE]";\nvar linkSubTitle = "[LINK_SUB_TITLE]";\nvar linkText = "[LINK_TEXT]";', ''),
+(2, '对联', 'image,video', 'var image1 = "";var image2 = "";', ''),
+(3, '浮层', 'image,video', 'var float = "";', 'www.adsys.com/float.js');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
