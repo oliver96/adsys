@@ -25,11 +25,20 @@ App.Utils = (function ( Backbone, _, $ ) {
             }
         });
         return formData;
-    }
+    };
     
     Utils.equals = function(value1, value2) {
         
-    }
+    };
+    // 动态加载CSS文件
+    Utils.loadCss = function(file) {
+        var head = document.getElementsByTagName('HEAD').item(0);
+        var style = document.createElement('link');
+        style.href = App.root + '/pub/css/' + file + '.css';
+        style.rel = 'stylesheet';
+        style.type = 'text/css';
+        head.appendChild(style);
+    };
     
     return Utils;
 }( Backbone, _, jQuery ));

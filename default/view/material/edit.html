@@ -9,7 +9,7 @@
     <div class="control-group">
         <label class="control-label" for="mat_name">名称</label>
         <div class="controls">
-            <input type="text" id="mat_name" name="name" />
+            <input type="text" id="mat_name" name="name" value="<%=name%>" />
         </div>
     </div>
     <div class="control-group">
@@ -37,17 +37,22 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="url">素材地址</label>
+        <label class="control-label" for="url">素材文件</label>
         <div class="controls">
-            <div class="input-prepend input-append">
-                <span class="add-on">http://</span>
-                <input type="text" id="url" name="url" class="span3" />
-                <button class="btn" type="button">上传素材</button>
+            <input type="hidden" id="url" name="url" value="<%=url%>" />
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                <div class="fileupload-new thumbnail"><img src="<?=$WEB_ROOT?>/pub/img/no_image.gif" style="width: 260px; height: 120px;"  /></div>
+                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                <div>
+                    <span class="btn btn-file">
+                        <span class="fileupload-new">选择文件</span>
+                        <span class="fileupload-exists">更改</span>
+                        <input type="file" id="file" name="file" />
+                    </span>
+                    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">删除</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">&nbsp;</label>
     </div>
     <div class="form-actions">
         <a href="<?= Core::url(array('m' => 'material', 'a' => 'index')); ?>" class="btn btn-small">

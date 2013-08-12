@@ -2,10 +2,12 @@ define([
     'jquery'
     , 'underscore'
     , 'backbone'
+    , 'vendors/bootstrap/bootstrap-fileupload'
     , 'bundles/_public/utils'
     , 'bundles/_models/common'
     , 'bundles/_models/material'
 ], function($, _, Backbone) {
+    App.Utils.loadCss("bootstrap-fileupload");
     var material = new Material();
     
     var MainView = Backbone.View.extend({
@@ -51,7 +53,7 @@ define([
         , saveMaterialEvent : function(e) {
             // 获取表单所有数据
             var formData = App.Utils.getFormData('material_form');
-            
+            this.uploadFile();return;
             material.set(formData);
             if(material.isValid()) {
                 material.save(null, {'success' : function(model) {
@@ -61,6 +63,27 @@ define([
                     }
                 }});
             }
+        }
+        , uploadFile : function(e) {
+            // 获取文件对象
+            var fileObj = document.getElementById("file").files[0]; 
+            // 接收上传文件的后台地址 
+            var FileController = App.router.url({'m': 'material', 'a': 'upload'}); 
+           
+            // FormData 对象
+            var form = new FormData();
+            form.append("id", material.get('id'));  // 可以增加表单数据
+            form.append("file", fileObj);           // 文件对象
+
+            // XMLHttpRequest 对象
+            var xhr = new XMLHttpRequest();
+            xhr.open("post", FileController, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    var response = JSON.parse(xhr.responseText);
+                }
+            }
+            xhr.send(form);
         }
     });
     

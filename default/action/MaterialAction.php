@@ -96,6 +96,11 @@ class MaterialAction extends CommonAction {
         
         $this->outputJson($rows);
     }
+    
+    public function upload() {
+        $fileInfo = $_FILES;
+        $this->outputJson($fileInfo);
+    }
 }
 
 ?>

@@ -12,7 +12,7 @@ Material = (function ( Backbone, _, $ ) {
             , 'adv_id' : 0
             , 'type' : 0
             , 'url' : 0
-            , 'size' : ''
+            , 'size' : 0
         }
         , validate : function(data) {
             var hasError = false;
