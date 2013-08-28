@@ -1,7 +1,7 @@
 <?php
 import("action.CommonAction");
 import("model.MaterialModel");
-import("model.AdvertiserModel");
+
 class MaterialAction extends CommonAction {
     public function rows() {
         $totalPage  = 0;
@@ -83,18 +83,6 @@ class MaterialAction extends CommonAction {
             }
             $this->outputJson(array('id' => $id));
         }
-    }
-    
-    // 获取广告主
-    public function advertisers() {
-        $advertiser = new AdvertiserModel();
-        $advList    = $advertiser->getList();
-        $rows       = array();
-        while($advRow = $advList->nextRow()) {
-            $rows[] = $advRow->toArray();
-        }
-        
-        $this->outputJson($rows);
     }
     
     public function upload() {
