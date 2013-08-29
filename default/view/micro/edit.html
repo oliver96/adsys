@@ -23,10 +23,13 @@
         <label class="control-label" for="value_type">显示类型</label>
         <div class="controls">
             <select id="value_type" name="value_type">
-                <option>输入框</option>
-                <option>多项单选</option>
-                <option>多项多选</option>
-                <option>多项下拉</option>
+                <% _.each(valueTypes, function(valueType, index) { %>
+                <% if(valueType.value == value_type) { %>
+                <option value="<%=valueType.value%>" selected="selected"><%=valueType.label%></option>
+                <% } else { %>
+                <option value="<%=valueType.value%>"><%=valueType.label%></option>
+                <% } %>
+                <% }) %>
             </select>
         </div>
     </div>
@@ -41,11 +44,13 @@
         <label class="control-label" for="validate">值类型</label>
         <div class="controls">
             <select id="validate" name="validate">
-                <option>字符串</option>
-                <option>URL</option>
-                <option>邮件地址</option>
-                <option>数字</option>
-                <option>字母与数字</option>
+                <% _.each(validates, function(validateRow, index) { %>
+                <% if(validateRow.value == validate) { %>
+                <option value="<%=validateRow.value%>" selected="selected"><%=validateRow.label%></option>
+                <% } else { %>
+                <option value="<%=validateRow.value%>"><%=validateRow.label%></option>
+                <% } %>
+                <% }) %>
             </select>
         </div>
     </div>

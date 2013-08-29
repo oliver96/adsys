@@ -69,7 +69,7 @@ class MicroAction extends CommonAction {
         
         $existRecords = false;
         if($id > 0) {
-            $existRecords = $micro->getCount(array('id' => 'not {$id}', 'code' => $code));
+            $existRecords = $micro->getCount(array('id' => "not " . $id, 'code' => $code));
         }
         else {
             $existRecords = $micro->getCount(array('code' => $code));

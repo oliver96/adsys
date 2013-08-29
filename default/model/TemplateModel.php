@@ -23,5 +23,22 @@ class TemplateModel extends Model {
     public function getPrimaryKey() {
         return $this->prikey;
     }
+    
+    /**
+     * 获取创意模板ID与名称的对映表
+     *
+     * @return array
+     */
+    public function getId2NameMap() {
+        $map = array();
+        $list = $this->getList(array(
+            'field' => array('id', 'name')
+        ));
+        while($row = $list->nextRow()) {
+            $id = $row->get('id');
+            $map[$id] = $row->get('name');
+        }
+        return $map;
+    }
 }
 ?>

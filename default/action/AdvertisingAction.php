@@ -2,6 +2,9 @@
 import("action.CommonAction");
 import("model.AdvertisingModel");
 import("model.AdvertiserModel");
+import("model.TemplateModel");
+import("model.SizeModel");
+import("model.MicroModel");
 class AdvertisingAction extends CommonAction {
     private $adModel = null;
     
@@ -27,6 +30,13 @@ class AdvertisingAction extends CommonAction {
             $advertiser = new AdvertiserModel();
             $advMap     = $advertiser->getId2NameMap();
             
+            // 创意形式
+            $template   = new TemplateModel();
+            $tplMap     = $template->getId2NameMap();
+            
+            // 广告尺寸
+            $size       = new SizeModel();
+            $sizeMap    = $size->getId2NameMap();
             
             // 获取广告列表
             $adList     = $advertising->getList(array(
@@ -35,8 +45,16 @@ class AdvertisingAction extends CommonAction {
             
             while($row = $adList->nextRow()) {
                 $rowAry = $row->toArray();
+                
                 $advid = $rowAry['adv_id'];
                 $rowAry['adv_name'] = $advMap[$advid];
+                
+                $tplid = $rowAry['tpl_id'];
+                $rowAry['tpl_name'] = $tplMap[$tplid];
+                
+                $sizeid = $rowAry['size_id'];
+                $rowAry['size_name'] = $sizeMap[$sizeid];
+                
                 $rows[] = $rowAry;
             }
         }
@@ -102,6 +120,29 @@ class AdvertisingAction extends CommonAction {
             $this->adModel = new AdvertisingModel();
         }
         return $this->adModel;
+    }
+    
+    // 根据模板ID获取创意板板的宏变量
+    public function micros() {
+        $rows = array();
+        
+        $tplid = $this->request->getParameter('id');
+        $template = new TemplateModel();
+        $tplRow = $template->getOne(array('id' => $tplid));
+        $code = $tplRow->get('code');
+        if(preg_match_all('|\[([\w]+)\]|Uis', $code, $matches)) {
+            if(!empty($matches) && !empty($matches[1])) {
+                $microNames = $matches[1];
+                
+                $micro = new MicroModel();
+                $microList = $micro->getList(array('code' => "IN ('" . implode("','", $microNames) . "')"));
+                while($microRow = $microList->nextRow()) {
+                    $rows[] = $microRow->toArray();
+                }
+            }
+        }
+        
+        $this->outputJson($rows);
     }
 }
 ?>

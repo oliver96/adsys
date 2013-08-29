@@ -6,86 +6,97 @@
 </ul>
 <form id="ad_form" class="form-horizontal"></form>
 <script id="ad_form_template" type="text/template">
-    <div class="control-group">
-        <label class="control-label" for="ad_name">名称</label>
-        <div class="controls">
-            <input type="text" id="ad_name" name="name" value="<%=name%>" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="adv_id">所属广告主</label>
-        <div class="controls">
-            <select id="advertiser" name="adv_id">
-                <option value="0">--选择广告主--</option>
-                <% _.each(advertisers, function(adv, index) { %>
-                <% if(adv.id == adv_id) { %>
-                <option value="<%=adv.id%>" selected="selected"><%=adv.name%></option>
-                <% } else { %>
-                <option value="<%=adv.id%>"><%=adv.name%></option>
-                <% } %>
-                <% }) %>
-            </select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="tpl_id">创意模板</label>
-        <div class="controls">
-            <select id="template" name="tpl_id">
-                <option value="0">--选择模板--</option>
-                <optgroup label="基本模板">
-                    <% _.each(templates.system, function(tpl, index) { %>
-                    <% if(tpl.id == tpl_id) { %>
-                    <option value="<%=tpl.id%>" selected="selected"><%=tpl.name%></option>
-                    <% } else { %>
-                    <option value="<%=tpl.id%>"><%=tpl.name%></option>
-                    <% } %>
-                    <% }) %>
-                </optgroup>
-                <optgroup label="自定义模板">
-                    <option value="image">无</option>
-                </optgroup>
-            </select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="size_id">尺寸</label>
-        <div class="controls">
-            <select id="size" name="size_id">
-                <option value="0">--选择尺寸--</option>
-                <optgroup label="基本尺寸">
-                    <% _.each(sizes.system, function(size, index) { %>
-                    <% if(size.id == size_id) { %>
-                    <option value="<%=size.id%>" selected="selected"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
-                    <% } else { %>
-                    <option value="<%=size.id%>"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
-                    <% } %>
-                    <% }) %>
-                </optgroup>
-                <optgroup label="自定义尺寸">
-                    <% _.each(sizes.custom, function(size, index) { %>
-                    <% if(size.id == size_id) { %>
-                    <option value="<%=size.id%>" selected="selected"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
-                    <% } else { %>
-                    <option value="<%=size.id%>"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
-                    <% } %>
-                    <% }) %>
-                </optgroup>
-            </select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="optimize">是否优化播放</label>
-        <div class="controls">
-            <label class="radio inline">
-                <input type="radio" id="optimize_disable" name="optimize" value="0" checked> 否
-            </label>
-            <label class="radio inline">
-                <input type="radio" id="optimize_enabled" name="optimize" value="1"> 是
-            </label>
-        </div>
-    </div>
     <fieldset>
-        <legend>素材设置</legend>
+        <legend>1、基本设置</legend>
+        <div class="control-group">
+            <label class="control-label" for="ad_name">名称</label>
+            <div class="controls">
+                <input type="text" id="ad_name" name="name" value="<%=name%>" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="adv_id">所属广告主</label>
+            <div class="controls">
+                <select id="advertiser" name="adv_id">
+                    <option value="0">--选择广告主--</option>
+                    <% _.each(advertisers, function(adv, index) { %>
+                    <% if(adv.id == adv_id) { %>
+                    <option value="<%=adv.id%>" selected="selected"><%=adv.name%></option>
+                    <% } else { %>
+                    <option value="<%=adv.id%>"><%=adv.name%></option>
+                    <% } %>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="tpl_id">创意模板</label>
+            <div class="controls">
+                <select id="template" name="tpl_id">
+                    <option value="0">--选择模板--</option>
+                    <optgroup label="基本模板">
+                        <% _.each(templates.system, function(tpl, index) { %>
+                        <% if(tpl.id == tpl_id) { %>
+                        <option value="<%=tpl.id%>" selected="selected"><%=tpl.name%></option>
+                        <% } else { %>
+                        <option value="<%=tpl.id%>"><%=tpl.name%></option>
+                        <% } %>
+                        <% }) %>
+                    </optgroup>
+                    <optgroup label="自定义模板">
+                        <option value="image">无</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="size_id">尺寸</label>
+            <div class="controls">
+                <select id="size" name="size_id">
+                    <option value="0">--选择尺寸--</option>
+                    <optgroup label="基本尺寸">
+                        <% _.each(sizes.system, function(size, index) { %>
+                        <% if(size.id == size_id) { %>
+                        <option value="<%=size.id%>" selected="selected"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
+                        <% } else { %>
+                        <option value="<%=size.id%>"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
+                        <% } %>
+                        <% }) %>
+                    </optgroup>
+                    <optgroup label="自定义尺寸">
+                        <% _.each(sizes.custom, function(size, index) { %>
+                        <% if(size.id == size_id) { %>
+                        <option value="<%=size.id%>" selected="selected"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
+                        <% } else { %>
+                        <option value="<%=size.id%>"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
+                        <% } %>
+                        <% }) %>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="optimize">是否优化播放</label>
+            <div class="controls">
+                <label class="radio inline">
+                    <input type="radio" id="optimize_disable" name="optimize" value="0" checked> 否
+                </label>
+                <label class="radio inline">
+                    <input type="radio" id="optimize_enabled" name="optimize" value="1"> 是
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>2、创意设置</legend>
+        <div id="banner_settings">
+            <%_.each(micros, function(micro, index) {%>
+            <%=micro.name%>
+            <%});%>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>3、素材设置</legend>
         <div>
             <table class="table">
                 <thead>

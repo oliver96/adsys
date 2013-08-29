@@ -23,5 +23,22 @@ class SizeModel extends Model {
     public function getPrimaryKey() {
         return $this->prikey;
     }
+    
+    /**
+     * 获取尺寸ID与名称的对映表
+     *
+     * @return array
+     */
+    public function getId2NameMap() {
+        $map = array();
+        $list = $this->getList(array(
+            'field' => array('id', 'name', 'width', 'height')
+        ));
+        while($row = $list->nextRow()) {
+            $id = $row->get('id');
+            $map[$id] = sprintf("%s(%d x %d)", $row->get('name'), $row->get('width'), $row->get('height'));
+        }
+        return $map;
+    }
 }
 ?>

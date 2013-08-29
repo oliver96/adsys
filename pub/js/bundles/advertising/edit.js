@@ -48,6 +48,7 @@ define([
                     }
                 });
             }
+            
             // 获取尺寸
             if(typeof App.sizes == 'undefined') {
                 $.ajax({
@@ -63,6 +64,17 @@ define([
             adInfo.advertisers = App.advertisers;
             adInfo.templates = App.templates;
             adInfo.sizes = App.sizes;
+            adInfo.micros = [];
+            if(adInfo.tpl_id > 0) {
+                $.ajax({
+                    'url' : App.router.url({'m' : 'advertising', 'a' : 'micros', 'id': adInfo.tpl_id})
+                    , 'async' : false
+                    , 'success' : function(res) {
+                        adInfo.micros = res;
+                    }
+                });
+            }
+            
             this.$('#ad_form').html(this.template(adInfo));
         }
         , disableEnterKeyEvent : function(e) {

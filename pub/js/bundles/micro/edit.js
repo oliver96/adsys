@@ -29,6 +29,19 @@ define([
         }
         , render : function() {
             var microInfo = micro.toJSON();
+            microInfo.valueTypes = [
+                {'label': '输入框', 'value': 'input'}
+                , {'label': '多项单选', 'value': 'radio'}
+                , {'label': '多项多选', 'value': 'checkbox'}
+                , {'label': '多项下拉', 'value': 'select'}
+            ];
+            microInfo.validates = [
+                {'label': '字符串', 'value': 'string'}
+                , {'label': 'URL', 'value': 'url'}
+                , {'label': '邮件地址', 'value': 'email'}
+                , {'label': '数字', 'value': 'digit'}
+                , {'label': '字母与数字', 'value': 'alpha'}
+            ];
             this.$('#micro_form').html(this.template(microInfo));
         }
         , disableEnterKeyEvent : function(e) {
