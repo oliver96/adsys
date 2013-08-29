@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.3
+-- version 4.0.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Aug 29, 2013 at 05:25 PM
--- Server version: 5.5.32-0ubuntu0.12.04.1
--- PHP Version: 5.3.10-1ubuntu3.7
+-- 主机: localhost
+-- 生成日期: 2013 年 08 月 29 日 23:26
+-- 服务器版本: 5.5.15
+-- PHP 版本: 5.4.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `adsys`
+-- 数据库: `adsys`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `advertisers`
+-- 表的结构 `advertisers`
 --
 
 DROP TABLE IF EXISTS `advertisers`;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `advertisers` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `advertisers`
+-- 转存表中的数据 `advertisers`
 --
 
 INSERT INTO `advertisers` (`id`, `name`, `indus_id`, `credit`, `contact`, `email`, `detail`, `created`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `advertisers` (`id`, `name`, `indus_id`, `credit`, `contact`, `email
 -- --------------------------------------------------------
 
 --
--- Table structure for table `advertisings`
+-- 表的结构 `advertisings`
 --
 
 DROP TABLE IF EXISTS `advertisings`;
@@ -62,19 +62,36 @@ CREATE TABLE IF NOT EXISTS `advertisings` (
   `optimize` int(11) NOT NULL COMMENT '是否优化素材显示',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `advertisings`
+-- 转存表中的数据 `advertisings`
 --
 
 INSERT INTO `advertisings` (`id`, `name`, `adv_id`, `tpl_id`, `size_id`, `optimize`, `created`) VALUES
-(1, 'TEST01', 1, 4, 3, 1, '2013-08-29 02:58:50');
+(1, 'TEST01', 1, 4, 3, 1, '2013-08-29 02:58:50'),
+(2, 'TEST02', 1, 3, 2, 1, '2013-08-29 13:40:56');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `industries`
+-- 表的结构 `banners`
+--
+
+DROP TABLE IF EXISTS `banners`;
+CREATE TABLE IF NOT EXISTS `banners` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `tpl_id` int(11) DEFAULT NULL,
+  `schdl_id` int(11) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `industries`
 --
 
 DROP TABLE IF EXISTS `industries`;
@@ -85,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `industries` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `industries`
+-- 转存表中的数据 `industries`
 --
 
 INSERT INTO `industries` (`id`, `name`) VALUES
@@ -103,7 +120,7 @@ INSERT INTO `industries` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materials`
+-- 表的结构 `materials`
 --
 
 DROP TABLE IF EXISTS `materials`;
@@ -120,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `materials` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `micros`
+-- 表的结构 `micros`
 --
 
 DROP TABLE IF EXISTS `micros`;
@@ -130,22 +147,62 @@ CREATE TABLE IF NOT EXISTS `micros` (
   `name` varchar(50) NOT NULL COMMENT '宏‘变量名称',
   `value_type` enum('input','radio','checkbox','select') NOT NULL COMMENT '变量类型',
   `values` tinytext NOT NULL COMMENT '变量值范围',
-  `validate` enum('URL','EMAIL','DIGIT','NONE') NOT NULL,
+  `validate` enum('string','url','email','digit','alpha') NOT NULL,
   `memo` tinytext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `micros`
+-- 转存表中的数据 `micros`
 --
 
 INSERT INTO `micros` (`id`, `code`, `name`, `value_type`, `values`, `validate`, `memo`) VALUES
-(1, 'IMAGE_URL', '图片URL', '', '', 'URL', '');
+(1, 'IMAGE_URL', '图片URL', 'input', '', 'string', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sizes`
+-- 表的结构 `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `adv_id` varchar(45) DEFAULT NULL,
+  `item_num` varchar(45) DEFAULT NULL,
+  `start` varchar(45) DEFAULT NULL,
+  `end` varchar(45) DEFAULT NULL,
+  `type` enum('cpd','cpm','cpc','cpa','cps') DEFAULT NULL,
+  `count` int(11) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `order_items`
+--
+
+DROP TABLE IF EXISTS `order_items`;
+CREATE TABLE IF NOT EXISTS `order_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `ads_id` int(11) DEFAULT NULL,
+  `start` varchar(45) DEFAULT NULL,
+  `end` varchar(45) DEFAULT NULL,
+  `type` enum('cpd','cpm','cpc','cpa','cps') DEFAULT NULL,
+  `count` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `sizes`
 --
 
 DROP TABLE IF EXISTS `sizes`;
@@ -161,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `sizes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `sizes`
+-- 转存表中的数据 `sizes`
 --
 
 INSERT INTO `sizes` (`id`, `name`, `type`, `width`, `height`, `memo`, `created`) VALUES
@@ -180,7 +237,24 @@ INSERT INTO `sizes` (`id`, `name`, `type`, `width`, `height`, `memo`, `created`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `templates`
+-- 表的结构 `slots`
+--
+
+DROP TABLE IF EXISTS `slots`;
+CREATE TABLE IF NOT EXISTS `slots` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `size_id` int(11) DEFAULT NULL,
+  `is_deployed` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `templates`
 --
 
 DROP TABLE IF EXISTS `templates`;
@@ -195,13 +269,13 @@ CREATE TABLE IF NOT EXISTS `templates` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `templates`
+-- 转存表中的数据 `templates`
 --
 
 INSERT INTO `templates` (`id`, `name`, `type`, `mat_types`, `code`, `extjs`) VALUES
 (1, '文字链', 'system', 'text,image', 'var linkTitle = "[LINK_TITLE]";\nvar linkSubTitle = "[LINK_SUB_TITLE]";\nvar linkText = "[LINK_TEXT]";', ''),
 (2, '对联', 'system', 'image,video', 'var image1 = "";var image2 = "";', ''),
-(3, '浮层', 'system', 'image,video', 'var float = "";', 'www.adsys.com/float.js'),
+(3, '浮层', 'system', 'image,video', 'var float = "[FLOAT]";\r\nvar image = "[IMAGE_URL]";', 'www.adsys.com/float.js'),
 (4, '视频', 'system', 'image,video', 'var vedio = '''';\nconsole.log(vedio);', 'www.test.com/a.js');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
