@@ -2,6 +2,8 @@
 import("action.CommonAction");
 import("model.SizeModel");
 class SizeAction extends CommonAction {
+    private $sizeModel = null;
+    
     public function index() {
         $this->output();
     }
@@ -18,16 +20,16 @@ class SizeAction extends CommonAction {
         if(empty($page) || $page < 0) $page = 1;
         if(empty($pageSize) || $pageSize < 0) $pageSize = 10;
         
-        // 实例化广告主模型对象
-        $size       = new SizeModel();
-        // 广告主总记录数
+        // 实例化广告尺寸模型对象
+        $size       = $this->getSizeModel();
+        // 广告尺寸总记录数
         $totalCount = $size->getCount();
         
         $rows = array();
         if($totalCount > 0) {
             // 求出记录总页数
             $totalPage  = ceil($totalCount / $pageSize);
-            // 获取广告主列表
+            // 获取广告尺寸列表
             $sizeList    = $size->getList(array(
                 'order' => '`id` DESC'
             ), $page, $pageSize);
@@ -51,7 +53,7 @@ class SizeAction extends CommonAction {
         $output     = array();
         $id         = $this->request->getParameter('id');
         if($id > 0) {
-            $size       = new SizeModel();
+            $size       = $this->getSizeModel();
             $sizeRow    = $size->getOne(array('id' => $id));
             if($sizeRow) {
                 $output = $sizeRow->toArray();
@@ -94,6 +96,28 @@ class SizeAction extends CommonAction {
             }
             $this->outputJson(array('id' => $id));
         }
+    }
+    
+    // 获取尺寸
+    public function sizes() {
+        $sizes      = $this->getSizeModel();
+        $sizeList   = $sizes->getList();
+        $rows       = array('system' => array(), 'custom' => array());
+        while($sizeRow = $sizeList->nextRow()) {
+            $row = $sizeRow->toArray();
+            $type = $row['type'];
+            $rows[$type][] = $row;
+        }
+        
+        $this->outputJson($rows);
+    }
+    
+    // 获取尺寸模型对象
+    private function getSizeModel() {
+        if($this->sizeModel == null) {
+            $this->sizeModel = new SizeModel();
+        }
+        return $this->sizeModel;
     }
 }
 

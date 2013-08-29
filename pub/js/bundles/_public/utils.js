@@ -9,10 +9,10 @@ App.Utils = (function ( Backbone, _, $ ) {
                 , name  = this.name
                 , tag   = this.tagName.toLowerCase();
 
-            if(type == 'text' || type == 'password' || tag == 'textarea') {
+            if(type == 'text' || type == 'password' || tag == 'textarea' || type == 'radio') {
                 formData[name] = this.value;
             }
-            else if(type == 'checkbox' || type == 'radio') {
+            else if(type == 'checkbox') {
                 if(typeof formData[name] == 'undefined') {
                     formData[name] = [];
                 }

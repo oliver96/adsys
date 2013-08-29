@@ -1,5 +1,4 @@
 <?php
-import("model.AdvertiserModel");
 class CommonAction extends Action {
     public function initAction(& $context, & $request, & $response) {
         parent::initAction($context, $request, $response);
@@ -132,18 +131,6 @@ class CommonAction extends Action {
                 $this->saveData();
             break;
         }
-    }
-    
-    // 获取广告主
-    public function advertisers() {
-        $advertiser = new AdvertiserModel();
-        $advList    = $advertiser->getList();
-        $rows       = array();
-        while($advRow = $advList->nextRow()) {
-            $rows[] = $advRow->toArray();
-        }
-        
-        $this->outputJson($rows);
     }
 }
 

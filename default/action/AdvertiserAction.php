@@ -4,6 +4,8 @@ import("model.AdvertiserModel");
 import("model.IndustryModel");
 
 class AdvertiserAction extends CommonAction {
+    private $advModel = null;
+    
     public function index() {
         $this->output();
     }
@@ -21,7 +23,7 @@ class AdvertiserAction extends CommonAction {
         if(empty($pageSize) || $pageSize < 0) $pageSize = 10;
         
         // 实例化广告主模型对象
-        $advertiser = new AdvertiserModel();
+        $advertiser = $this->getAdvModel();
         // 广告主总记录数
         $totalCount = $advertiser->getCount();
         
@@ -59,7 +61,7 @@ class AdvertiserAction extends CommonAction {
     protected function getData() {
         $id = $this->request->getParameter('id');
         if($id > 0) {
-            $advertiser = new AdvertiserModel();
+            $advertiser = $this->getAdvModel();
             $advRow     = $advertiser->getOne(array('id' => $id));
             if($advRow) {
                 $advRowAry = $advRow->toArray();
@@ -74,7 +76,7 @@ class AdvertiserAction extends CommonAction {
         $name   = $this->request->getParameter('name');
         $input  = $this->request->getInput();
         
-        $advertiser = new AdvertiserModel();
+        $advertiser = $this->getAdvModel();
         
         $existRecords = false;
         if($id > 0) {
@@ -102,6 +104,18 @@ class AdvertiserAction extends CommonAction {
         }
     }
     
+    // 获取广告主
+    public function advertisers() {
+        $advertiser = $this->getAdvModel();
+        $advList    = $advertiser->getList();
+        $rows       = array();
+        while($advRow = $advList->nextRow()) {
+            $rows[] = $advRow->toArray();
+        }
+        
+        $this->outputJson($rows);
+    }
+    
     // 获取行业
     public function industries() {
         $industry   = new IndustryModel();
@@ -112,6 +126,14 @@ class AdvertiserAction extends CommonAction {
         }
         
         $this->outputJson($rows);
+    }
+    
+    // 获取广告主模型
+    private function getAdvModel() {
+        if($this->advModel == null) {
+            $this->advModel = new AdvertiserModel();
+        }
+        return $this->advModel;
     }
 }
 ?>

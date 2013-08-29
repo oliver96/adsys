@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 12, 2013 at 04:02 PM
+-- Generation Time: Aug 29, 2013 at 05:25 PM
 -- Server version: 5.5.32-0ubuntu0.12.04.1
 -- PHP Version: 5.3.10-1ubuntu3.7
 
@@ -54,14 +54,22 @@ INSERT INTO `advertisers` (`id`, `name`, `indus_id`, `credit`, `contact`, `email
 
 DROP TABLE IF EXISTS `advertisings`;
 CREATE TABLE IF NOT EXISTS `advertisings` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '广告名称',
   `adv_id` int(11) NOT NULL,
   `tpl_id` int(11) NOT NULL,
   `size_id` int(11) NOT NULL,
   `optimize` int(11) NOT NULL COMMENT '是否优化素材显示',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `advertisings`
+--
+
+INSERT INTO `advertisings` (`id`, `name`, `adv_id`, `tpl_id`, `size_id`, `optimize`, `created`) VALUES
+(1, 'TEST01', 1, 4, 3, 1, '2013-08-29 02:58:50');
 
 -- --------------------------------------------------------
 
@@ -150,15 +158,24 @@ CREATE TABLE IF NOT EXISTS `sizes` (
   `memo` tinytext NOT NULL COMMENT '说明',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `sizes`
 --
 
 INSERT INTO `sizes` (`id`, `name`, `type`, `width`, `height`, `memo`, `created`) VALUES
-(1, '250x250', 'system', 250, 250, '', '2013-08-01 04:07:26'),
-(2, '468x60', 'system', 468, 60, '', '2013-08-01 04:19:53');
+(1, '首页横幅', 'system', 728, 90, '', '2013-08-29 02:00:41'),
+(2, '横幅', 'system', 468, 60, '', '2013-08-29 02:00:41'),
+(3, '半横幅', 'system', 234, 60, '', '2013-08-29 02:02:45'),
+(4, '摩天大楼', 'system', 120, 600, '', '2013-08-29 02:02:45'),
+(5, '宽幅摩天大楼', 'system', 160, 600, '', '2013-08-29 02:04:27'),
+(6, '正方形', 'system', 200, 200, '', '2013-08-29 02:04:27'),
+(7, '大正方形', 'system', 250, 250, '', '2013-08-29 02:05:41'),
+(8, '矩形', 'system', 180, 150, '', '2013-08-29 02:05:41'),
+(9, '大矩形', 'system', 300, 250, '', '2013-08-29 02:07:25'),
+(10, '特大矩形', 'system', 336, 280, '', '2013-08-29 02:07:25'),
+(11, '竖幅', 'system', 120, 240, '', '2013-08-29 02:08:04');
 
 -- --------------------------------------------------------
 
@@ -170,20 +187,22 @@ DROP TABLE IF EXISTS `templates`;
 CREATE TABLE IF NOT EXISTS `templates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '创意模板名称',
+  `type` enum('system','custom') NOT NULL COMMENT '模板类型',
   `mat_types` varchar(50) NOT NULL COMMENT '允许的素材类型',
   `code` tinytext NOT NULL COMMENT '创意模板代码',
   `extjs` varchar(200) NOT NULL COMMENT '第三方js扩展库',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `templates`
 --
 
-INSERT INTO `templates` (`id`, `name`, `mat_types`, `code`, `extjs`) VALUES
-(1, '文字链', 'text,image', 'var linkTitle = "[LINK_TITLE]";\nvar linkSubTitle = "[LINK_SUB_TITLE]";\nvar linkText = "[LINK_TEXT]";', ''),
-(2, '对联', 'image,video', 'var image1 = "";var image2 = "";', ''),
-(3, '浮层', 'image,video', 'var float = "";', 'www.adsys.com/float.js');
+INSERT INTO `templates` (`id`, `name`, `type`, `mat_types`, `code`, `extjs`) VALUES
+(1, '文字链', 'system', 'text,image', 'var linkTitle = "[LINK_TITLE]";\nvar linkSubTitle = "[LINK_SUB_TITLE]";\nvar linkText = "[LINK_TEXT]";', ''),
+(2, '对联', 'system', 'image,video', 'var image1 = "";var image2 = "";', ''),
+(3, '浮层', 'system', 'image,video', 'var float = "";', 'www.adsys.com/float.js'),
+(4, '视频', 'system', 'image,video', 'var vedio = '''';\nconsole.log(vedio);', 'www.test.com/a.js');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

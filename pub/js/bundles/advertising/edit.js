@@ -31,15 +31,38 @@ define([
             // 获取广告主
             if(typeof App.advertisers == 'undefined') {
                 $.ajax({
-                    'url' : App.router.url({'m' : 'advertising', 'a' : 'advertisers'})
+                    'url' : App.router.url({'m' : 'advertiser', 'a' : 'advertisers'})
                     , 'async' : false
                     , 'success' : function(res) {
                         App.advertisers = res;  
                     }
                 });
             }
+            // 获取模板
+            if(typeof App.templates == 'undefined') {
+                $.ajax({
+                    'url' : App.router.url({'m' : 'template', 'a' : 'templates'})
+                    , 'async' : false
+                    , 'success' : function(res) {
+                        App.templates = res;  
+                    }
+                });
+            }
+            // 获取尺寸
+            if(typeof App.sizes == 'undefined') {
+                $.ajax({
+                    'url' : App.router.url({'m' : 'size', 'a' : 'sizes'})
+                    , 'async' : false
+                    , 'success' : function(res) {
+                        App.sizes = res;
+                    }
+                });
+            }
+            
             var adInfo = ad.toJSON();
             adInfo.advertisers = App.advertisers;
+            adInfo.templates = App.templates;
+            adInfo.sizes = App.sizes;
             this.$('#ad_form').html(this.template(adInfo));
         }
         , disableEnterKeyEvent : function(e) {

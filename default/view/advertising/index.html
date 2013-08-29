@@ -21,43 +21,22 @@
         <tr>
         <tr>
             <th width="5%"><input type="checkbox" /></th>
-            <th width="20%">素材名称</th>
-            <th width="10%">类型</th>
-            <th width="40%">URL</th>
-            <th width="10%">文件大小</td>
+            <th width="20%">广告名称</th>
+            <th width="20%">广告主</th>
+            <th width="20%">创意形式</th>
+            <th width="20%">尺寸</td>
             <th width="15%">创建时间</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td width="5%"><input type="checkbox" /></td>
-            <td>哇哈哈-凉爽夏日</td>
-            <td>
-                图片(JPG)
-            </td>
-            <td>http://localhost/photo/2/23422.jpg</td>
-            <td>20K</td>
-            <td>2013-06-27 21:28:32</td>
-        </tr>
-        <tr>
-            <td width="5%"><input type="checkbox" /></td>
-            <td>哇哈哈-凉爽夏日</td>
-            <td>视频(SWF)</td>
-            <td>http://localhost/photo/2/23422.jpg</td>
-            <td>20K</td>
-            <td>2013-06-27 21:28:32</td>
-        </tr>
-    </tbody>
+    <tbody id="ad_list"></tbody>
 </table>
-<div class="pagination pull-right">
-    <ul>
-        <li><a href="#">上一页</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">下一页</a></li>
-    </ul>
-</div>
+<div class="pagination pull-right"></div>
+<script id="ad_item_template" type="text/template">
+    <td width="5%"><input type="checkbox" name="row_checked" value="<%=id%>" /></td>
+    <td><a href="javascript:void(0);" class="edit-link"><%=name%></a></td>
+    <td><%=adv_name%></td>
+    <td></td>
+    <td></td>
+    <td><%=created%></td>
+</script>
 <?php include($VIEW_PATH . "/_public/footer.html") ?>

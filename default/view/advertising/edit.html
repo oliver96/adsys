@@ -1,22 +1,22 @@
 <?php include($VIEW_PATH . "/_public/header.html"); ?>
 <ul class="breadcrumb">
-    <li><a href="#">首页</a> <span class="divider">/</span></li>
-    <li><a href="#">广告</a> <span class="divider">/</span></li>
-    <li class="active">添加</li>
+    <li><a href="<?=Core::url(array('m' => 'index', 'a' => 'index'))?>">首页</a> <span class="divider">/</span></li>
+    <li><a href="<?=Core::url(array('m' => 'advertising', 'a' => 'index'))?>">广告</a> <span class="divider">/</span></li>
+    <li class="active"><?=(isset($req_id) && $req_id) > 0 ? '编辑' : '添加'?></li>
 </ul>
 <form id="ad_form" class="form-horizontal"></form>
 <script id="ad_form_template" type="text/template">
     <div class="control-group">
-        <label class="control-label" for="banner_name">名称</label>
+        <label class="control-label" for="ad_name">名称</label>
         <div class="controls">
-            <input type="text" id="material_name" />
+            <input type="text" id="ad_name" name="name" value="<%=name%>" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="adv_id">所属广告主</label>
         <div class="controls">
             <select id="advertiser" name="adv_id">
-                <option value="0">选择广告主</option>
+                <option value="0">--选择广告主--</option>
                 <% _.each(advertisers, function(adv, index) { %>
                 <% if(adv.id == adv_id) { %>
                 <option value="<%=adv.id%>" selected="selected"><%=adv.name%></option>
@@ -31,12 +31,15 @@
         <label class="control-label" for="tpl_id">创意模板</label>
         <div class="controls">
             <select id="template" name="tpl_id">
+                <option value="0">--选择模板--</option>
                 <optgroup label="基本模板">
-                    <option value="image">文字链</option>
-                    <option value="image">普通</option>
-                    <option value="video">浮层</option>
-                    <option value="video">对联</option>
-                    <option value="video">视频</option>
+                    <% _.each(templates.system, function(tpl, index) { %>
+                    <% if(tpl.id == tpl_id) { %>
+                    <option value="<%=tpl.id%>" selected="selected"><%=tpl.name%></option>
+                    <% } else { %>
+                    <option value="<%=tpl.id%>"><%=tpl.name%></option>
+                    <% } %>
+                    <% }) %>
                 </optgroup>
                 <optgroup label="自定义模板">
                     <option value="image">无</option>
@@ -48,14 +51,24 @@
         <label class="control-label" for="size_id">尺寸</label>
         <div class="controls">
             <select id="size" name="size_id">
+                <option value="0">--选择尺寸--</option>
                 <optgroup label="基本尺寸">
-                    <option value="1">250x250</option>
-                    <option value="2">120x90</option>
-                    <option value="3">300x250</option>
-                    <option value="4">468x60</option>
+                    <% _.each(sizes.system, function(size, index) { %>
+                    <% if(size.id == size_id) { %>
+                    <option value="<%=size.id%>" selected="selected"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
+                    <% } else { %>
+                    <option value="<%=size.id%>"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
+                    <% } %>
+                    <% }) %>
                 </optgroup>
                 <optgroup label="自定义尺寸">
-                    <option value="image">无</option>
+                    <% _.each(sizes.custom, function(size, index) { %>
+                    <% if(size.id == size_id) { %>
+                    <option value="<%=size.id%>" selected="selected"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
+                    <% } else { %>
+                    <option value="<%=size.id%>"><%=size.name%> (<%=size.width + ' x ' + size.height%>)</option>
+                    <% } %>
+                    <% }) %>
                 </optgroup>
             </select>
         </div>
@@ -64,10 +77,10 @@
         <label class="control-label" for="optimize">是否优化播放</label>
         <div class="controls">
             <label class="radio inline">
-                <input type="radio" id="optimize_disable" name="optimize" value="option1" checked> 否
+                <input type="radio" id="optimize_disable" name="optimize" value="0" checked> 否
             </label>
             <label class="radio inline">
-                <input type="radio" id="optimize_enabled" name="optimize" value="option2"> 是
+                <input type="radio" id="optimize_enabled" name="optimize" value="1"> 是
             </label>
         </div>
     </div>
