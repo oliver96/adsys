@@ -137,7 +137,14 @@ class AdvertisingAction extends CommonAction {
                 $micro = new MicroModel();
                 $microList = $micro->getList(array('code' => "IN ('" . implode("','", $microNames) . "')"));
                 while($microRow = $microList->nextRow()) {
-                    $rows[] = $microRow->toArray();
+                    $tmpRow = $microRow->toArray();
+                    if(!empty($tmpRow['values'])) {
+                        $tmpRow['values'] = explode(',', $tmpRow['values']);
+                    }
+                    else {
+                        $tmpRow['values'] = array();
+                    }
+                    $rows[] = $tmpRow;
                 }
             }
         }

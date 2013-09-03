@@ -91,7 +91,18 @@
         <legend>2、创意设置</legend>
         <div id="banner_settings">
             <%_.each(micros, function(micro, index) {%>
-            <%=micro.name%>
+            <div class="control-group">
+                <label class="control-label" for="optimize"><%=micro.name%></label>
+                <div class="controls">
+                    <%if (micro.value_type == 'input') {%>
+                    <input type="text" id="micro_<%=micro.id%>" name="micro_<%=micro.id%>" validate="<%=micro.validate%>" value="" />
+                    <%} else if(micro.value_type == 'radio' || micro.value_type == 'checkbox') {%>
+                    <%for(var i = 0, l = micro.values.length; i < l; i ++) {%>
+                    <input type="text" id="micro_<%=micro.id+'_'+i%>" name="micro_<%=micro.id%>" value="" />
+                    <%}%>
+                    <%}%>
+                </div>
+            </div>
             <%});%>
         </div>
     </fieldset>
